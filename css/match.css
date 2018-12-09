@@ -1,0 +1,291 @@
+h1 {
+	text-align: center;
+	font-size: 35px;
+    max-width: 680px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    margin: auto;
+	padding: 5px;	
+}
+
+.scoresreset{
+	font-size: 15px;
+	font-family: 'Open Sans', sans-serif;
+    font-weight: 200;
+	max-width: 680px;
+	display: flex;
+	flex-wrap: nowrap;	
+	margin: auto;
+	justify-content: space-between;
+	padding: 10px;	
+}
+
+#starRating{
+	width: 150px;
+	height: 25px;
+}
+
+#rating{
+	max-width: 100%;
+	max-height: 100%;
+}
+
+
+.deck {
+	width: 680px;
+	height: 680px;
+	background: linear-gradient(67deg, #f2f2f2 0%, #f4f1f1 100%);	
+	margin: auto;
+    border-radius: 10px;
+    padding: 20px;	
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);	
+}
+
+.container {
+	width: 150px;
+	height: 150px;
+    perspective: 200px;
+}
+
+.card {
+	width: 150px;
+	height: 150px;
+	position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);	
+    border-radius: 25px;
+	background-color: #d3d3d3;
+	cursor: pointer;
+}
+
+.card div{
+	width: 150px;
+	height: 150px;
+	position: absolute;
+    backface-visibility: hidden;	
+}
+
+.card .front {
+
+}
+
+.card .back {
+	transform: rotateY( 180deg );
+}
+
+.card .back img {
+    width: 125px;
+	height: 125px;
+	padding: 12.5px;
+	border-radius: 25px;
+}
+
+.flipped {
+  	cursor: default;
+	transform: rotateY( 180deg );
+}
+
+.unmatched {
+  animation: shake 0.25s, backgroundToOrange 0.5s;	
+}
+
+.matched {
+  background-color: #ff8080;
+  animation: scale 0.5s;	
+}
+
+#resetButton {
+	width: 25px;
+	height: 25px;
+	background-image: url('../img/resetbutton.svg');
+	background-size: 20px, 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#resetButton:hover {
+	cursor: pointer;
+	background-color: #d3d3d3;
+	border-radius: 50%;
+	background-image: url('../img/resetbuttonred.svg');
+}
+
+.modal {
+	display:none;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-color: gray;
+	opacity: 0.90;
+}
+
+.modal-content {
+	display: block;
+	position: relative;
+	width: 47%;
+	height: 22%;
+	background-color: #fefefe;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20%;
+	padding: 20px;
+	border: 1px solid #bf0000;
+	box-shadow: 5px 2px 20px 0 rgba(255, 0, 0, 0.4);
+	border-radius: 10px;
+	text-align: center;
+}
+
+.modal-content .message{
+	font-size: 35px;
+	color: red;
+}
+
+.modal-content .moveEnd{
+    font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	color: red;
+}
+
+.modal-content #endRating{
+	width: 50%;
+	height: 50%
+}
+
+
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 16px;
+	font-weight: 900;
+}
+
+.close:hover{
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes backgroundToOrange {
+  from {background-color: #d3d3d3;}
+  to {background-color: #809fff;}
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    20% { transform: translate(-1px, -2px) rotate(-1deg); }
+    40% { transform: translate(-3px, 0px) rotate(1deg); }
+    60% { transform: translate(3px, 2px) rotate(0deg); }
+    80% { transform: translate(1px, -1px) rotate(1deg); }
+    100% { transform: translate(-1px, 2px) rotate(-1deg); }
+}
+
+@keyframes scale {
+    0% { transform: scale(1.00); }
+    50% { transform: scale(1.10); }
+    100% { transform: scale(1.00); }
+}
+
+@media screen and (max-width: 1200px){
+	.deck {
+		width: 460px;
+		height: 460px;  
+	}
+
+	.container,
+	.card,
+	.card div{
+		width: 100px;
+		height: 100px;
+	}
+
+	.card .back img {
+    width: 83px;
+	height: 83px;
+	padding: 8px;
+	border-radius: 25px;
+	}
+
+	.scoresreset{
+	font-size: 14px;
+	max-width: 460px;
+	padding: 5px;	
+	}
+
+	#starRating{
+	width: 100px;
+	height: 20px;
+	}
+
+	#resetButton {
+	width: 20px;
+	height: 20px;
+	background-size: 15px, 15px;
+	}
+
+	h1 {
+	font-size: 25px;
+    max-width: 460px;
+	}
+}
+
+@media screen and (max-width: 525px){
+	.deck {
+		width: 300px;
+		height: 400px;  
+	}
+
+	.card,
+	.card div{
+		width: 60px;
+		height: 60px;
+		border-radius: 10px;
+		padding: 0px;
+	}
+
+	.container{
+		width: 60px;
+		height: 60px;
+		border-radius: 10px;
+		padding: 2px;
+		perspective: 100px;		
+	}
+
+	.card .back img {
+    width: 52px;
+	height: 52px;
+	padding: 4px;
+	border-radius: 10px;
+	}
+
+	.scoresreset{
+	font-size: 10px;
+	max-width: 300px;
+	max-height: 25px;
+	padding: 0px;	
+	}
+
+	#starRating{
+	width: 50px;
+	height: 150px;
+	}
+
+	#resetButton {
+	width: 15px;
+	height: 15px;
+	background-size: 12.5px, 12.5px;
+	}
+
+	h1 {
+	font-size: 12px;
+    max-width: 300px;
+	}
+}
+
+
