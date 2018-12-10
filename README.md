@@ -17,6 +17,6 @@ Game is best viewed on the newest version of _Chrome_ but should work on any mod
 
 #### Bugs and TODO
 
-*Some users have experienced the setTimeout function not working but the lastest upload should fix that.
+*Some users have experienced the setTimeout function not working but the lastest upload should fix that.  (Error with background-color of card)
 
 *The logic for determining the star rating should be improved, switch statement implemented.
