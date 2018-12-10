@@ -1,11 +1,12 @@
 document.querySelector('.deck').addEventListener("click", clickFunction);
 document.querySelector('#resetButton').addEventListener("click", restart);
 document.querySelector('.close').addEventListener("click",closeFunction);
+document.querySelector('.again').addEventListener("click",closeAndRestart);
 
 // card images
-let images = ["img\\silhouette.svg", "img\\silhouette.svg", "img\\apple.svg", "img\\apple.svg", "img\\bird.svg",
-"img\\bird.svg", "img\\butterfly.svg", "img\\butterfly.svg", "img\\car.svg", "img\\car.svg", "img\\cat.svg",
-"img\\cat.svg", "img\\tree.svg", "img\\tree.svg", "img\\house.svg", "img\\house.svg"];
+let images = ["img\\silhouette.svg", "img\\apple.svg", "img\\bird.svg", "img\\butterfly.svg", 
+"img\\car.svg", "img\\cat.svg", "img\\tree.svg", "img\\house.svg"];
+images = images.concat(images);
 
 // variables
 let cards = document.querySelectorAll('div.back');
@@ -37,7 +38,7 @@ function init(){
 
 	images = shuffle(images);
 	for (i; i<cards.length; i++){
-		cards[i].innerHTML = '<img class="images" src="' + images[i] + '">';
+		cards[i].innerHTML = `<img class="images" src="${images[i]}">`;
 	}	
 }
 
@@ -54,7 +55,7 @@ function restart(){
 	for(let flip of changeFlipped){
 		flip.classList.toggle('flipped');
 	}
-	setTimeout(init,500);	
+	setTimeout(init,600);	
 }
 
 // creates congraduations modal
@@ -69,6 +70,11 @@ function createModal(){
 // closes congraduations modal
 function closeFunction(){
 	document.querySelector('.modal').style.display = "none";
+}
+
+function closeAndRestart(){
+	closeFunction();
+	restart();
 }
 
 // called when game is over, eigth matches
@@ -88,19 +94,19 @@ function checkRating(elapse){
 		document.querySelector('#rating').src = "img/star/starHalf.svg";
 	else if(score < 0.60)
 		document.querySelector('#rating').src = "img/star/starOne.svg";
-	else if(score < 0.65)
+	else if(score >= 0.60 && score < 0.65)
 		document.querySelector('#rating').src = "img/star/starOneHalf.svg";
-	else if(score < 0.70)
+	else if(score >= 0.65 && score < 0.70)
 		document.querySelector('#rating').src = "img/star/starTwo.svg";
-	else if(score < 0.75)
+	else if(score >= 0.70 && score < 0.75)
 		document.querySelector('#rating').src = "img/star/starTwoHalf.svg";
-	else if(score < 0.80)
+	else if(score >= 0.75 && score < 0.80)
 		document.querySelector('#rating').src = "img/star/starThree.svg";
-	else if(score < 0.85)
+	else if(score >= 0.80 && score < 0.85)
 		document.querySelector('#rating').src = "img/star/starThreeHalf.svg";
-	else if(score < 0.90)
+	else if(score >= 0.85 && score < 0.90)
 		document.querySelector('#rating').src = "img/star/starFour.svg";
-	else if(score < 0.95)
+	else if(score >= 0.90 && score < 0.95)
 		document.querySelector('#rating').src = "img/star/starFourHalf.svg";
 	else if(score >= 0.95)
 		document.querySelector('#rating').src = "img/star/starFive.svg";	
@@ -141,13 +147,19 @@ function addTime(){
 	}	
 }
 
+function resetCards(){
+	firstCard = secondCard = null;
+}
+
 // flips back all unmatched cards back
 function flipBackUnmatched(){
-	firstCard.classList.toggle('flipped');
-	secondCard.classList.toggle('flipped');
-	firstCard.querySelector('.images').classList.toggle('unmatched');
-	secondCard.querySelector('.images').classList.toggle('unmatched');
-	firstCard = secondCard = null;
+	if(firstCard.querySelector('.images').classList.contains('unmatched')){
+		firstCard.classList.toggle('flipped');
+		secondCard.classList.toggle('flipped');
+		firstCard.querySelector('.images').classList.toggle('unmatched');
+		secondCard.querySelector('.images').classList.toggle('unmatched');
+	}
+	setTimeout(resetCards,300);
 }
 
 // checks for matched or unmatched cards, increments turns taken
@@ -158,16 +170,19 @@ function checkForMatch(){
 		firstCard.querySelector('.images').classList.toggle('matched');
 		secondCard.querySelector('.images').classList.toggle('matched');
 		matches++;
-		if(matches == 8){
-			gameover();
-		}
-		firstCard = secondCard = null;
+
 	}
 	else{
 		firstCard.querySelector('.images').classList.toggle('unmatched');
-		secondCard.querySelector('.images').classList.toggle('unmatched');
-		setTimeout(flipBackUnmatched,750);		
+		secondCard.querySelector('.images').classList.toggle('unmatched');	
 	}
+
+	if(matches == 8){
+		gameover();
+	}
+	else{
+		setTimeout(flipBackUnmatched,300);
+	}	
 }
 
 // checks selection is card, if card selected is flipped, if there are two cards
@@ -196,7 +211,7 @@ function clickFunction(event) {
 			else{
 				secondCard = node;
 				secondCard.classList.toggle('flipped');
-				setTimeout(checkForMatch,1000);
+				setTimeout(checkForMatch,300);
 			}
 		}	
 	}

@@ -55,7 +55,7 @@ h1 {
 	height: 150px;
 	position: absolute;
     transform-style: preserve-3d;
-    transition: transform 0.5s;
+    transition: transform 0.20s;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);	
     border-radius: 25px;
 	background-color: #d3d3d3;
@@ -90,12 +90,12 @@ h1 {
 }
 
 .unmatched {
-  animation: shake 0.25s, backgroundToOrange 0.5s;	
+  animation: shake 0.20s, backgroundToOrange 0.20s;	
 }
 
 .matched {
   background-color: #ff8080;
-  animation: scale 0.5s;	
+  animation: scale 0.20s;	
 }
 
 #resetButton {
@@ -130,7 +130,7 @@ h1 {
 	display: block;
 	position: relative;
 	width: 47%;
-	height: 22%;
+	height: 28%;
 	background-color: #fefefe;
 	margin-left: auto;
 	margin-right: auto;
@@ -158,6 +158,18 @@ h1 {
 	height: 50%
 }
 
+.modal-content .again {
+	font-size: 12px;
+	font-weight: 900;
+	font-size: 20px;
+	color: red;
+}
+
+.again:hover{
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 .close {
 	color: #aaa;
@@ -192,7 +204,7 @@ h1 {
     100% { transform: scale(1.00); }
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1000px){
 	.deck {
 		width: 460px;
 		height: 460px;  
@@ -235,7 +247,7 @@ h1 {
 	}
 }
 
-@media screen and (max-width: 525px){
+@media screen and (max-width: 500px){
 	.deck {
 		width: 300px;
 		height: 400px;  
