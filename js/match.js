@@ -159,7 +159,7 @@ function flipBackUnmatched(){
 		firstCard.querySelector('.images').classList.toggle('unmatched');
 		secondCard.querySelector('.images').classList.toggle('unmatched');
 	}
-	setTimeout(resetCards,300);
+	setTimeout(resetCards,600);
 }
 
 // checks for matched or unmatched cards, increments turns taken
@@ -181,7 +181,7 @@ function checkForMatch(){
 		gameover();
 	}
 	else{
-		setTimeout(flipBackUnmatched,300);
+		setTimeout(flipBackUnmatched,600);
 	}	
 }
 
@@ -211,7 +211,7 @@ function clickFunction(event) {
 			else{
 				secondCard = node;
 				secondCard.classList.toggle('flipped');
-				setTimeout(checkForMatch,300);
+				setTimeout(checkForMatch,600);
 			}
 		}	
 	}
